@@ -1,12 +1,13 @@
 {
-  "name": "reactlunch",
+  "name": "restaurantPicker",
   "private": false,
   "version": "0.0.0",
-  "homepage": "https://erowell32.github.io/restaurantPicker",
+  "homepage": "https://erowell32.github.io/",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "start": "react-scripts start",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "predeploy": "npm run build",
