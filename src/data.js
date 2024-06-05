@@ -69,6 +69,26 @@ export const RESTAURANTS = [
 		category: "American",
 		type: "fastfood"
 	},
+	{
+		name: "Dub's",
+		category: "American",
+		type: "sit"
+	},
+	{
+		name: "Thatcher's",
+		category: "American",
+		type: "sit"
+	},
+	{
+		name: "Cookout",
+		category: "American",
+		type: "fastfood"
+	}
+	{
+		name: "Guacamole's",
+		category: "Mexican",
+		type: "sit"
+	},
 
 ]
 
