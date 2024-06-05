@@ -83,13 +83,12 @@ export const RESTAURANTS = [
 		name: "Cookout",
 		category: "American",
 		type: "fastfood"
-	}
+	},
 	{
 		name: "Guacamole's",
 		category: "Mexican",
 		type: "sit"
-	},
-
+	}
 ]
 
 export const CATEGORIES = [
