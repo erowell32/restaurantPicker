@@ -1,6 +1,5 @@
-export default function Restaurant({ name, ...props }) {
+export default function Restaurant({ name, onClick, ...props }) {
 	return (
-		//<button {...props}>{name}</button>
-		<li>{name}</li>
+		<button onClick={onClick} {...props}>{name}</button>
 	);
 }

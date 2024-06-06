@@ -1,4 +1,4 @@
-export default function CategoryButton({ name, onSelect, active }) {
+export default function FilterButton({ name, onSelect, active }) {
 	return (
 		<button
 			onClick={onSelect}

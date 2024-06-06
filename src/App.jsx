@@ -1,80 +1,124 @@
 import { useState } from 'react'
 import './App.css'
 import Header from './Components/Header/Header'
-import { CATEGORIES, RESTAURANTS } from './data'
+import { CATEGORIES, RESTAURANTS, TYPES } from './data'
 import Restaurant from './Components/RestaurantList/Restaurant'
-import CategoryButton from './Components/Category/CategoryButton'
+import FilterButton from './Components/Category/FilterButton'
+import TypeButton from './Components/Category/TypeButton'
 import Result from './Components/Result/Result'
-//import CategorySection from './Components/Category/CategorySection'
 
-//export const [category, setCategory] = useState('All')
+function genRandomInt(max) {
+  return Math.floor(Math.random() * (max));
+}
+
+function getFilteredList(list, category, type) {
+  if (category !== 'Any') {
+    list = list.filter(item => item.category === category);
+  }
+  if (type !== 'Any') {
+    list = list.filter(item => item.type === type);
+  }
+  return list;
+}
 
 function App() {
-  const [category, setCategory] = useState('All')
-  const [activeList, setActiveList] = useState(RESTAURANTS);
-  const [choice, setChoice] = useState(null)
-  
-  function updateCategory(newCategory) {
-    setCategory(newCategory);
-    if (newCategory === 'All') {
-      setActiveList(RESTAURANTS)
-      return
-    }
-    setActiveList(RESTAURANTS.filter((item) => item.category === newCategory))
-  }
+  const [category, setCategory] = useState('Any');
+  const [type, setType] = useState('Any');
+  const [mainList, setMainList] = useState(RESTAURANTS);
+  const [choice, setChoice] = useState(null);
 
-  function compare( a, b ) {
-    if ( a.last_nom < b.last_nom ){
-      return -1;
-    }
-    if ( a.last_nom > b.last_nom ){
-      return 1;
-    }
-    return 0;
-  }
+  let list = getFilteredList(mainList, category, type);
 
-  function genRandomInt(max) {
-    return Math.floor(Math.random() * (max));
+  function handleRestaurantClick(name) {
+    let newList = mainList.slice()
+    for (let i = 0; i < newList.length; i++) {
+      if (newList[i].name === name) {
+        newList[i].active = !newList[i].active
+      }
+    }
+    setMainList(newList)
   }
 
   function displayList() {
-    return activeList.map((item) => <Restaurant key={item.name} name={item.name} onClick={() => {item.status = !item.status}}/>)
+    return list.map((item, index) =>
+      <Restaurant
+        key={item.name}
+        className={!item.active ? "strike" : ""}
+        name={item.name}
+        onClick={() => handleRestaurantClick(item.name)}
+      />)
   }
 
-  function pickSomeFood() {
-    let list = activeList.map((item) => item.name)
-    setChoice(list[genRandomInt(list.length)] + '!!')
+  function resetFilters() {
+    let newList = mainList.slice()
+    for (let i = 0; i < newList.length; i++) {
+      newList[i].active = true
+    }
+    setCategory('Any')
+    setType('Any')
+    setMainList(newList)
+  }
+
+  function getChoice(list, category = 'Any', type = 'Any') {
+    list = getFilteredList(list, category, type);
+    list = list.filter(place => place.active === true)
+    let item = list[genRandomInt(list.length)];
+    if (item) {
+      setChoice(item.name + '!!');
+      return
+    }
+    setChoice('')
   }
 
   return (
     <>
       <Header />
-      <h2>Select a Category</h2>
-      <ul>
-        <CategoryButton
-          name={"All"}
-          active={category === 'All'}
-          onSelect={() => updateCategory("All")}
-        />
-        {CATEGORIES.map((item) =>
-          <CategoryButton
-            key={item}
-            name={item}
-            active={category === item}
-            onSelect={() => updateCategory(item)}
-          />
-        )}
-      </ul>
+      <div id="filter">
+        <ul>
+          {CATEGORIES.map((item) =>
+            <FilterButton
+              key={item}
+              name={item}
+              active={category === item}
+              onSelect={() => {
+                if (category === item) {
+                  setCategory("Any")
+                  return
+                }
+                setCategory(item)
+              }}
+            />
+          )}
+        </ul>
+        <ul>
+          {TYPES.map((item) =>
+            <FilterButton
+              key={item}
+              name={item}
+              active={type === item}
+              onSelect={() => {
+                if (type === item) {
+                  setType("Any")
+                  return
+                }
+                setType(item)
+              }}
+            />
+          )}
+        </ul>
+      </div>
+      <div id="place">
+        <button onClick={resetFilters}>Reset</button>
+      </div>
       <section>
         <h2>Restaurants</h2>
-        <ul>
+        <ul id="place">
           {displayList()}
         </ul>
       </section>
       <section>
-        <ul>
-          <button onClick={() => pickSomeFood()}>Pick some food!</button>
-          <button onClick={() => setChoice('')}>Clear</button>
+        <ul id='place'>
+          <button onClick={() => getChoice(mainList, category, type)}>Pick some food!</button>
         </ul>
       </section>
       <Result choice={choice} />

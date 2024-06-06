@@ -5,21 +5,12 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #231729;
+  background-color: #16101d;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
 }
 
 body {
@@ -38,26 +29,43 @@ h1 {
   line-height: 1;
 }
 
-button {
+#filter button {
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #2e2538;
+  background-color: #302b36;
   cursor: pointer;
   transition: border-color 0.25s;
 }
-button:hover {
+#filter button:hover {
   border-color: #646cff;
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
+
 button.active {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+button.strike {
+  color:gray;
+  text-decoration: line-through;
+}
+
+#place button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #302b36;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+#place button:hover {
+  border-color: #646cff;
 }
 
 section {
@@ -68,7 +76,7 @@ section {
 ul {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: .3rem;
   display: flex;
   gap: .5rem;
   flex-wrap: wrap;
