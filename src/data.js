@@ -96,8 +96,92 @@ export const RESTAURANTS = [
 		active: true
 	},
 	{
+		name: "Arby's",
+		category: "American",
+		type: "Fast Food",
+		active: true
+	},
+	{
+		name: "Hardee's",
+		category: "American",
+		type: "Fast Food",
+		active: true
+	},
+	{
+		name: "Subway",
+		category: "American",
+		type: "Fast Food",
+		active: true
+	},
+	{
+		name: "Wendy's",
+		category: "American",
+		type: "Fast Food",
+		active: true
+	},
+	{
+		name: "Checker's",
+		category: "American",
+		type: "Fast Food",
+		active: true
+	},
+	{
+		name: "Krystal",
+		category: "American",
+		type: "Fast Food",
+		active: true
+	},
+	{
+		name: "IHOP",
+		category: "American",
+		type: "Dining",
+		active: true
+	},
+	{
+		name: "Cracker Barrel",
+		category: "American",
+		type: "Dining",
+		active: true
+	},
+	{
+		name: "Longhorn",
+		category: "American",
+		type: "Dining",
+		active: true
+	},
+	{
+		name: "Applebee's",
+		category: "American",
+		type: "Dining",
+		active: true
+	},
+	{
+		name: "Firehouse",
+		category: "American",
+		type: "Fast Food",
+		active: true
+	},
+	{
+		name: "Jimmy John's",
+		category: "American",
+		type: "Fast Food",
+		active: true
+	},
+	{
 		name: "Thatcher's",
 		category: "American",
+		type: "Dining",
+		active: true
+	},
+	{
+		name: "Waffle House",
+		category: "American",
+		type: "Dining",
+		active: true
+	},
+	{
+		name: "Jerusalem Grill",
+		category: "Greek",
 		type: "Dining",
 		active: true
 	},
@@ -135,6 +219,24 @@ export const RESTAURANTS = [
 		name: "Willie's",
 		category: "Mexican",
 		type: "Fast Food",
+		active: true
+	},
+	{
+		name: "Soho",
+		category: "Japanese",
+		type: "Dining",
+		active: true
+	},
+	{
+		name: "Mr. Sumo",
+		category: "Japanese",
+		type: "Dining",
+		active: true
+	},
+	{
+		name: "Tokyo",
+		category: "Japanese",
+		type: "Dining",
 		active: true
 	}
 ]

@@ -1,11 +1,9 @@
 import { useState } from 'react'
 import './App.css'
-import Header from './Components/Header/Header'
-import { CATEGORIES, RESTAURANTS, TYPES } from './data'
-import Restaurant from './Components/RestaurantList/Restaurant'
-import FilterButton from './Components/Category/FilterButton'
-import TypeButton from './Components/Category/TypeButton'
-import Result from './Components/Result/Result'
+import { RESTAURANTS } from './data'
+import Restaurant from './Components/Restaurant'
+import FilterButton from './Components/FilterButton'
+import Result from './Components/Result'
 
 function genRandomInt(max) {
   return Math.floor(Math.random() * (max));
@@ -20,6 +18,29 @@ function getFilteredList(list, category, type) {
   }
   return list;
 }
+
+function getCategories(list) {
+  let categories = [];
+  for (const item of list) {
+    if (!categories.includes(item.category)) {
+      categories.push(item.category)
+    }
+  }
+  return categories;
+}
+
+function getTypes(list) {
+  let types = [];
+  for (const item of list) {
+    if (!types.includes(item.type)) {
+      types.push(item.type)
+    }
+  }
+  return types;
+}
+
+const CATEGORIES = getCategories(RESTAURANTS);
+const TYPES = getTypes(RESTAURANTS)
 
 function App() {
   const [category, setCategory] = useState('Any');
@@ -72,8 +93,8 @@ function App() {
 
   return (
     <>
-      <Header />
-      <div id="filter">
+      <h1>Let's pick some Food!</h1>
+      <div style={{marginBottom:'1rem'}} id="filter" >
         <ul>
           {CATEGORIES.map((item) =>
             <FilterButton
@@ -110,18 +131,18 @@ function App() {
       <div id="place">
         <button onClick={resetFilters}>Reset</button>
       </div>
-      <section>
+      <div style={{marginTop:'2rem'}}>
+        <ul id='place'>
+          <button onClick={() => getChoice(mainList, category, type)}>Pick some food!</button>
+        </ul>
+        {choice && <Result choice={choice} />}
+      </div>
+      <div id='result-container'>
         <h2>Restaurants</h2>
         <ul id="place">
           {displayList()}
         </ul>
-      </section>
-      <section>
-        <ul id='place'>
-          <button onClick={() => getChoice(mainList, category, type)}>Pick some food!</button>
-        </ul>
-      </section>
-      <Result choice={choice} />
+      </div>
     </>
   )
 }
